@@ -10,7 +10,8 @@ The approach is to have a webserver listen on a particular port. For security re
 The requirements must be values that must be passed in as environment variables. These can be placed in a `.env` file that would be loaded as early as possible.
 
 - GITHUB_WEBHOOK_SECRET: The secret used when setting up the webhook at Github
-- GITHUB_REPO: The repository that needs to be updated upon the webhook trigger
+- GITHUB_REPO_BRANCH: The online branch to pull the changes from 
+- LOCAL_REPO_DIR: The local repository path that needs to be updated after the webhook trigger
 - PORT: The port on which the webserver is listening on
 
 ## Using Webhook as a Systemd Service
