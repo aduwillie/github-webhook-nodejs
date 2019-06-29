@@ -1,5 +1,5 @@
 {
-  "name": "github-webhook-nodejs",
+  "name": "ad-github-webhook",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
