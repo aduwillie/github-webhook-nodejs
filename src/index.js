@@ -6,6 +6,7 @@ const Fs = require('fs');
 const { exec } = require('child_process');
 
 const DEFAULT_PORT = 3000;
+const DEFAULT_HOST = '0.0.0.0';
 
 if (!Fs.existsSync(process.env.LOCAL_REPO_DIR))
     throw new Error('No local Github repo path specified.');
@@ -34,10 +35,16 @@ const execAsync = (command) => new Promise((resolve, reject) => {
     });
 });
 
-const init = async ({ GITHUB_WEBHOOK_SECRET, GITHUB_REPO_BRANCH, LOCAL_REPO_DIR, PORT }, shouldStart = true) => {
+const init = async ({ 
+    GITHUB_WEBHOOK_SECRET, 
+    GITHUB_REPO_BRANCH, 
+    LOCAL_REPO_DIR, 
+    PORT,
+    HOST,
+}, shouldStart = true) => {
     const server = Hapi.server({
         port: PORT || DEFAULT_PORT,
-        host: 'localhost',
+        host: HOST || DEFAULT_HOST,
     });
 
     server.route({

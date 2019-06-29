@@ -1,6 +1,8 @@
-FROM node:dubnium-alpine
+FROM node:dubnium
 WORKDIR /code
 COPY . /code
 RUN npm install
-EXPOSE 80
+ENV LOCAL_REPO_DIR=/code
+ENV GITHUB_REPO_BRANCH=master
+EXPOSE 3000
 CMD [ "node", "src/index.js" ]
