@@ -35,13 +35,15 @@ const execAsync = (command) => new Promise((resolve, reject) => {
     });
 });
 
-const init = async ({ 
-    GITHUB_WEBHOOK_SECRET, 
-    GITHUB_REPO_BRANCH, 
-    LOCAL_REPO_DIR, 
-    PORT,
-    HOST,
-}, shouldStart = true) => {
+const init = async (env, shouldStart = true) => {
+    const { 
+        GITHUB_WEBHOOK_SECRET, 
+        GITHUB_REPO_BRANCH, 
+        LOCAL_REPO_DIR, 
+        PORT,
+        HOST,
+    } = env;
+    
     const server = Hapi.server({
         port: PORT || DEFAULT_PORT,
         host: HOST || DEFAULT_HOST,
@@ -51,7 +53,7 @@ const init = async ({
         method: 'GET',
         path: '/',
         options: {
-            handler: () => {
+            handler: async (_, h) => {
                 return 'Github Webhook for Node.js Apps: Change 1';
             },
         },
